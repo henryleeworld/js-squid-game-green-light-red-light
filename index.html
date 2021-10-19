@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta property="og:title" content="《魷魚游戲》一二三木頭人" />
+        <meta property="og:description" content="「一二三木頭人」要求參賽者一分鐘內衝過終點線。你可以在巨大娃娃轉身時移動頭，但當娃娃面向你時必須靜止，否則當娃娃的眼睛檢測到動作時你會被殺死。"/>
+        <meta property="og:locale" content="zh_TW" />
+        <meta property="og:type" content="website" />
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="css/green-light-red-light.css" />
+        <title>《魷魚游戲》一二三木頭人</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="game">
+                <canvas class="webcam" width="640" height="480"></canvas>
+                <div class="timer"><span class="time">01:00</span></div>
+                <div class="distance"><span class="total">000</span> /<span>100</span></div>
+                <div class="movement"><span class="total">00%</span></div>
+            </div>
+        </div>
+        <div class="howto ui is-visible">
+            <svg viewBox="0 0 191.99 60.82">
+                <path d="M28.3,10.23A22.3,22.3,0,1,1,6,32.53a22.29,22.29,0,0,1,22.3-22.3m0-6a28.3,28.3,0,1,0,28.29,28.3A28.33,28.33,0,0,0,28.3,4.23Z" fill="#fff" />
+                <path d="M186,10.57V54.49H142.06V10.57H186m6-6H136.06V60.49H192V4.57Z" fill="#fff" />
+                <path d="M93.18,12l23.7,41.05H69.48l23.7-41m0-12L88,9,64.28,50.05l-5.19,9h68.19l-5.2-9L98.38,9l-5.2-9Z" fill="#fff" />
+            </svg>
+            <h1>一二三木頭人</h1>
+            <p>
+                你有一分鐘衝過終點線。
+            </p>
+            <p>
+                當巨大娃娃轉身時，移動你的頭向前移動，並使左上角的計數器達到 100m。
+            </p>
+            <p>
+                當娃娃面向你時必須靜止。如果運動傳感器在右下角達到 100%，則您將被淘汰。
+            </p>
+            <p class="note">
+                開始遊戲前，你必須先授予應用程式攝影機的存取權。<br />
+                應用程式目前不適用於 iOs Safari。
+            </p>
+            <button class="cta start"></button>
+        </div>
+        <div class="dead ui">
+            <svg viewBox="0 0 191.99 60.82">
+                <path d="M28.3,10.23A22.3,22.3,0,1,1,6,32.53a22.29,22.29,0,0,1,22.3-22.3m0-6a28.3,28.3,0,1,0,28.29,28.3A28.33,28.33,0,0,0,28.3,4.23Z" fill="#fff" />
+                <path d="M186,10.57V54.49H142.06V10.57H186m6-6H136.06V60.49H192V4.57Z" fill="#fff" />
+                <path d="M93.18,12l23.7,41.05H69.48l23.7-41m0-12L88,9,64.28,50.05l-5.19,9h68.19l-5.2-9L98.38,9l-5.2-9Z" fill="#fff" />
+            </svg>
+            <h1>你死了！</h1>
+            <p>
+                糟糕，你好像移動太多或已超時...
+            </p>
+            <button class="cta replay replay1 is-ready">重玩</button>
+        </div>
+        <div class="win ui">
+            <svg viewBox="0 0 191.99 60.82">
+                <path d="M28.3,10.23A22.3,22.3,0,1,1,6,32.53a22.29,22.29,0,0,1,22.3-22.3m0-6a28.3,28.3,0,1,0,28.29,28.3A28.33,28.33,0,0,0,28.3,4.23Z" fill="#fff" />
+                <path d="M186,10.57V54.49H142.06V10.57H186m6-6H136.06V60.49H192V4.57Z" fill="#fff" />
+                <path d="M93.18,12l23.7,41.05H69.48l23.7-41m0-12L88,9,64.28,50.05l-5.19,9h68.19l-5.2-9L98.38,9l-5.2-9Z" fill="#fff" />
+            </svg>
+            <h1>你贏了！</h1>
+            <p>
+                幹得好，你活了下來……暫時。
+            </p>
+            <button class="cta replay replay2 is-ready">重玩</button>
+        </div>
+        <script src="js/canvas.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/picojs@1.0.0/pico.min.js" defer></script>
+        <script src="https://unpkg.co/gsap@3/dist/gsap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/three@0.133.1/examples/js/loaders/GLTFLoader.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/three-orbitcontrols@2.110.3/OrbitControls.js" integrity="sha256-YD020gc6xPmzFJDH02dHhv5nG7OJGHH6fUfHBuaD6Lo=" crossorigin="anonymous" defer></script>
+        <script src="js/green-light-red-light.js" defer></script>
+    </body>
+</html>
